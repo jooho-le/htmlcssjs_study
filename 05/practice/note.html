@@ -1,0 +1,115 @@
+<!--
+
+    <form 속성="속성값">여러 폼 요소</form>
+
+    * 기타 <form>태그 속성
+        1. method : 사용자가 입력한 내용 서버 쪽 프로그램으로 어떻게 넘겨줄지 지정
+            속성값 : get (256~4096byte만 가능,주소 표시줄에 내용이 그대로 드러남), post (길이제한x,내용 안드러남)
+        2. name : 자바스크립트로 폼 제어할 떄 사용할 폼 이름 지정
+        3. action : <form> 태그 안의 내용을 처리해줄 서버 프로그램 지정
+        4. target : action 속성에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에서 열리게함
+    
+    <form action=""autocomplete="off">여러 폼 요소</form> : 자동완성기능을 끈 것이고 기본 속성값은 on
+
+    <fieldset [ ]></fieldset> : 하나의 폼 안에서 여러 구역을 나누어 표시
+
+    <fieldset><legend>그룹 이름</legend></fieldset> : <fieldset>태그로 묶은 그룹에 제목 붙임
+
+    <label>태그 사용법 
+    1. 
+    <label>레이블명<input~></label> : <input>태그와 같은 폼 요소에 레이블 붙임 
+        * 레이블 : 입력란 가까이에 아이디나 비밀번호처럼 붙여 놓은 텍스트 
+    2.
+    <label for="id명">레이블명</label>
+    <input type="타입속성" id="id명">     : 폼 요소의 id속성값을 <label>태그의 for속성에게 알려줌
+
+    ---------------------------------------------------------------------
+    
+    * <input>태그의 type속성 = p130
+    
+    <input type="text"> : 텍스트 필드는 한줄짜리 일반 텍스트를 입력할 때 사용
+    <input type="password"> : text필드와 동일하며 표시만 *등 안보이는걸로 표시
+    * 텍스트 필드와 비밀번호 필드에서 사용하는 주요속성
+    size : 화면에 몇글자가 보이도록 할 것인지 지정
+    value : 텍스트 필드 요소가 화면에 표시될 떄 텍스트 필드 부분에 보여주는 내용 , 비밀번호 필드에서는 사용하지 않음
+    maxlength : 입력할 수 있는 최대문자 수를 지정
+
+    type="search" : 웹 브라우저 화면으로 볼 때는 텍스트 필드와 같지만 웹 브라우저에서는 검색을 위한 필드로 인식
+    type="url" : 웹 주소를 입력하는 필드
+    type="email" : 이메일 주소를 입력하는 필드
+    type="tel" : 전화번호를 입력하는 필드
+
+    type="checkbox" : 여러 항목 중 원하는 항목을 2개이상 선택하는 폼
+    type="radio" : 여러 항목중 원하는 항목을 1개만 선택하는 폼 
+    * checkbox와 radio에서 사용하는 속성
+    value : 선택한 항목을 서버에게 알려줄 때 념겨줄 값을 지정, 영문이거나 숫자여야 하며 필수 속성
+    checked : 여러 항목 중에서 기본으로 선택해 놓고 싶은 항목에 사용
+
+    type="number" : 스핀박스를 통해 숫자 선택 
+    type="range" : 슬라이드 막대를 통해 숫자 선택
+    * number와 range에서 사용하는 속성
+    min : 필드에 입력할 수 있는 최솟값 지정 , 기본최솟값=0
+    max : 필드에 입력할 수 있는 최댓값 지정 , 기본최댓값=100
+    step : 숫자 간격을 지정 , 기본값=1
+    value : 필드에 표시할 초깃값(화면에 초기표시값)
+
+    type="date" : 달력에서 날짜를 선택 입력
+    type="month" : 달력에서 월을 선택 입력
+    type="week" : 달력에서 주를 선택 입력
+
+    type="time" : 시간을 지정 
+    type="datetime" : 날짜와 시간을 지정
+    type="datetime-local" : 날짜와 시간을 지정
+
+    type="submit" value="버튼에 표시할 내용" : 폼에 입력한 정보를 서버로 전송 , 전송된 정보는 <form>태그의 action속성에서 지정한 폼 처리 프로그램에 넘겨짐
+    type="reset" value="버튼에 표시할 내용" : 입력된 모든 정보를 재설정하여 입력한 내용을 모두 지우는 역할 
+
+    type="image" src="이미지 경로" alt="대체 텍스트" : submit와 같은 기능을 하는 이미지버튼 
+
+    type="button" value="버튼에 표시할 내용" onclick="버튼 누르면 생성될거나 이동할 경로" : submit나 reset같은 기능은 없고 오직 버튼 형태만 삽입
+
+    type="file" : 파일을 첨부 , [파일선텍]or[찾아보기] 등의 버튼표시되고 이 버튼을 클릭하고 파일 선택하면 파일 첨부
+
+    type="hidden" name="이름" value="서버로 넘길 값" : 화면폼에는 보이지 않지만 사용자가 입력을 마치면 폼과 함께 서버로 전송되는 요소 
+
+    ---------------------------------------------------------------------
+
+    <input type-텍스트-입력-필드 autofocus> : 페이지 불러오자마자 폼에서 원하는 요소에 마우스 포인터를 표시
+    
+    <input type-텍스트-입력-필드 placeholder="힌트내용"> : 입력란에 힌트 내용을 표시 , 그 필드를 클릭하면 사라짐 (ex)아이디를 입력하세요
+
+    <input type-텍스트-입력-필드 readonly> 
+    <input type-텍스트-입력-필드 readonly="readonly">
+    <input type-텍스트-입력-필드 readonly="true">        : 사용자가 입력하지는 못하고 읽게만 하는 읽기 전용 필드
+
+    <input type-텍스트-입력-필드 required> 
+    <input type-텍스트-입력-필드 required="\required">    : 반드시 입력해야 하는 내용 지정
+ 
+    ---------------------------------------------------------------------
+
+    <textarea>내용</textarea cols="너비크기" rows="화면에 표시할 텍스트 줄 갯수"> : 폼에서 텍스트를 여러 줄 입력하는 영역 만듬
+
+    <select>
+        <option value="값1">내용1</option>
+        <option value="값2">내용2</option>
+    </select>                                : <select>태그로 드롭다운 목록의 시작과 끝을 표시하고 그안에 <option>태그를 사용해 원하는 항목 추가 <option>태그 안에 value속성을 이용해 서버로 넘겨주는 값 지정
+    * <select> 속성
+    size : 화면에 표시할 드롭다운 항목의 개수를 지정
+    multiple : 드롭다운 목록에서 둘 이상의 항목을 선택할 때 사용 
+    * <option> 속성
+    value : 해당 항목을 선택할 때 서버로 넘겨줄 값을 지정
+    selected : 드롭다운 메뉴를 삽입할 때 기본적으로 선택해서 보여줄 항목을 지정
+    
+    <input type="text" list="데이터 목록 id">
+    <datalist id="데이터 목록id">
+        <option value="서버로 넘길 값1">선택 옵션1</option>
+        <option value="서버로 넘길 값2">선택 옵션2</option>
+    </datalist>             : <datalist>태그를 이용해 데이터 목록의 시작과 끝을 표시하고 그 사이에 <option>태그를 사용해 각 데이터의 옵션을 표시
+                              value속성을 사용해서 서버로 넘겨줄 값을 지정하는데 이 값이 텍스트 필드에도 나타남
+                              데이터 목록을 사용할 텍스트 필드에서 어떤 데이터 목록을 연결할지 id값을 지정하면 됨
+
+    <button type="submit">내용</button> : 폼을 서버로 전송   * = <input type="submit">
+    <button type="reset">내용</button> : 폼에 입력한 내용을 초기화    * = <input type="reset">
+    <button type="button">내용</button> : 버튼 형태만 만들 뿐 기능은 없음    * = <input type="button">
+
+-->

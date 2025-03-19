@@ -1,0 +1,108 @@
+<!--
+
+    문서객체모델(DOM) : 자바스크립트를 이용하여 웹 문서에 접근하고 제어할 수 있도록 객체를 사용해 웹 문서를 체계적으로 정리하는 방법 
+    노드 : DOM트리에서 가지가 갈라져 나간 항목 
+    루트 : DOM트리의 시작부분인 HTML노드
+
+    DOM구성기본원칙
+    1. 모든 HTML태그는 요소노드이다
+    2. HTML태그에서 사용하는 텍스트 내용은 자식 노드인 텍스트노드이다
+    3. HTML태그에 있는 속성은 자식 노드인 속성노드이다
+    4. 주석은 주석노드이다 
+
+    * DOM트리 p605
+
+    ---------------------------------------------------------------------
+
+    요소명.getElementById("id명") : 특정한 id가 포함된 DOM요소에 접근 
+   
+    요소명.getElementsByClassName("class명") : 지정한 class선택자 이름이 들어있는 DOM요소에 접근 (class선택자는 여러요소에서 사용할 수 있어 Elements임)
+                                              클래스 이름이 같은 DOM요소들이 HTMLCollection객체로 저장됨 
+                                              
+    요소명.getElementsByTagName("태그명") : calss나 id를 지정하지 않은 DOM요소에 접근할때 사용 , 지정한 태그명을 사용한 DOM요소에 접근 , 반환하는 값들 HTMLCollection형태로 저장됨
+
+    노드.querySelector(선택자) : DOM트리의 텍스트, 속성노드까지 자유롭게 제어하며 id선택자처럼 반환값이 하나일때 사용 , class이름으로 접근할 때는 class이름을 사용한 여러요소중 첫번째 요소만 반환 
+    노드.querySelectorAll(선택자 또는 태그) : DOM트리의 텍스트, 속성노드까지 자유롭게 제어하며 class선택자나 태그 이름을 사용하여 여러값이 한꺼번에 반환될때 사용 
+        * 선택자를 표시할 때 id이름앞에는 해시기호(#)를 붙이고 class이름 앞에는 마침표(.)를 붙히며 태그는 기호없이 태그명만 쓰면 됨 
+
+    요소명.innerText = 내용 : 웹 요소의 내용을 수정하며 텍스트 내용을 표시
+    요소명.innerHTML = 내용 : 웹 요소의 내용을 수정하며 HEML태그까지 반영하여 표시 
+    
+    요소명.getAttribute("속성명") : 웹요소를 문서에 삽입할 때 태그속성을 함께 사용하면 DOM트리에 속성노드가 추가되며 속성값이 저장됨 이때 속성에 접근할 때 사용
+    요소명.setAttribute("속성명", "값") : 웹요소를 문서에 삽입할 때 태그속성을 함께 사용하면 DOM트리에 속성노드가 추가되며 속성값이 저장됨 이때 접근한 속성의 값을 바꿀때 사용 
+                                         원하는 속성값을 지정가능 , 속성값이 이미있다면 새로운 속성값으로 수정하고 아직 해당속성이 없다면 속성과 속성값을 새로 추가 
+                                         
+    ---------------------------------------------------------------------
+                                        
+    이벤트 처리기 함수가 간단하다면 DOM요소에 직접 연결가능 ex) p612-613
+
+        * event객체의 프로퍼티, 메서드 p614-615
+        이벤트가 발생한 대상에 접근하려면 이벤트 처리기에서 에약어 this를 사용 
+
+    요소.addEventListener(이벤트, 함수, 캡처여부); : 한 요소에 여러이벤트 처리기를 연결해 실행 가능 , 끝에 세미콜론(;) 꼭 붙여야함
+        이벤트 : 이벤트 유형을 지정 , click나 keypress처럼 on을 붙이지 않고 사용 
+        함수 : 이벤트가 발생하면 실행할 명령이나 함수를 지정 
+        캡처여부 : 이벤트를 캡처하는지 여부를 지정하며 기본값은 false이고 true와 false중에서 선택 
+
+    document.요소명.style.속성명 : css속성에 접근
+        ex) document.getElementById("desc").style.color = "blue"; => id가 desc인 요소의 글자를 파란색으로 바꿈 
+            * blue처럼 한 단어인 속성명은 그대로 사용하지만 background-color처럼 하이픈이 있는 속성은 backgroundColor처럼 두번째 단어의 첫글자를 대문자로 바꾸어 붙여서 사용 
+
+    ---------------------------------------------------------------------
+
+    DOM에서 새로운 노드를 만들어 추가하거나 삭제하려면 노드리스트를 사용해야함
+
+    노드리스트 : DOM에 접근할 때 querySelectorAll()메서드를 사용하면 노드를 한꺼번에 여러개 가져올 수 있다 이따 노드정보를 여러개 저장한 것 
+
+    document.querySelectorAll("li") : 현재 문서에서 li요소를 모두 가져오라는 뜻
+    document.querySelectorAll("li")[1] : li노드 리스트 중에서 두번쨰 노드를 가져오라는 뜻
+    
+    새 노드를 추가할 때는 웹 문서에 어떤 소스를 추가할지 먼저 생각하고, 그에 따라 요소 노드나 텍스트, 속성노드 등을 만들어야 함
+
+    텍스트 노드를 사용하는 새로운 요소 추가하기>>>
+    요소 노드 만들기>
+
+    document.createElement(노드명) : DOM에 새로운 요소를 추가할 때 가장 먼저 할 일은 요소노드를 만드는 것으로 괄호안에 해당하는 요소노드를 만듬 
+        ex) var newP = document.createElement("p"); : 새로운 p요소를 만듬 
+
+    텍스트 노드 만들기>
+
+    document.createTextNode(텍스트); : 새로운 요소 노드를 만들었으면 그다음은 내용을 담는 텍스트 노드를 자식노드로 연결해야함 이때 사용됨
+        ex) var txtNode = document.createTextNode("DOM은 document object model의 줄임말입니다"); : DOM은 document object model의 줄임말입니다라는 텍스트 노드 만듬 
+        
+    자식 노드 연결하기>
+    
+    부모노드.appendChild(자식노드) : 텍스트노드나 속성노드를 만든 후 요소 노드에 연결할 때 사용 , appendChild()메서드를 사용해서 연결하는 노드는 자식노드중 맨 끝에 추가됨 
+        ex) newP.appendChild(txtNode);
+            document.getElementById("info").appendChild(newP);  : 텍스트노드 txtNode를 요소노드 newP의 자식노드로 연결하고 newP노드를 다시 <div id="info"></div>의 자식노드로 연결
+            
+    속성값이 있는 새로운 요소 추가하기>>>
+    요소 노드 만들기>
+
+    var newImg = document.createElement("img") : 새로운 이미지 노드를 만듬 
+
+    속성 노드 만들기>
+
+    var srcNode = document.createAttribute("src") : 이미지 파일의 경로를 지정할 src속성 노드 추가
+    var altNode = document.createAttribute("alt") : 대체 텍스트를 지정할 alt를 위해 속성 노드를 추가 
+    
+    속성 노드 연결하기>
+
+    요소명.setAttributeNode(속성노드) : 속성노드는 요소노드의 자식으로 연결해야 함 , 새로 만든 속성 노드를 요소 노드에 추가하기 위해 사용 , 추가할 속성이 요소노드에 이미 들어가있으면 기존속성노드를 새 속성노드로 대체
+        ex) newImg.setAttributeNode(srcNode); : newImg라는 새 이미지 요소를 만들고 srcNode라는 속성 노드를 추가하여 작성한 것 
+
+    자식 노드 연결하기>
+    
+    img요소를 화면에 표시하려면 웹 문서의 DOM에 추가해야 함 , appendChild() 메서드를 사용해서 필요한 위치에 자식노드로 추가 
+        ex) document.getElementById("info").appendChild(newImg); : #info위치에 새로 만든 img요소를 자식요소로 추가함
+
+    노드 삭제하기>>>
+
+    노드를 삭제할 때에는 무도노드에서 자식노드를 삭제한다는 것 , 따라서 삭제해야 할 노드가 있다면 부모노드 먼저 찾아야함 , 그래서 노드를 삭제하는 메서드 외에 부모노드를 찾는 프로퍼티가 필요
+
+    노드.parentNode : 현재 노드의 부모 노드에 접근해서 부모 노드의 요소 노드를 반환 
+
+    부모노드.removeNode(자식노드) : 자식 노드를 삭제 
+        ex) li.parentNode.removeChild(li) : li노드를 삭제
+
+-->

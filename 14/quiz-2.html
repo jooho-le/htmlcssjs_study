@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습문제 2</title>
+	<style>
+		body {
+			font-size:1.2em;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<h2>3의 배수 찾기</h2>
+</body>
+
+<script>
+	var number = prompt("몇 까지 3의 배수를 찾을까요");
+
+	for (number; number % 3 == 0; number += 1) {
+		document.write("")
+	}
+
+	if (number != null) {
+			if (number % 3 == 0) {
+				var counting; 
+				counting++;
+				document.write(number + "까지 3의 배수의 개수 :" + counting);
+			}
+		}
+
+
+</script>
+
+</html>
+
+<!-- 
+프롬프트문으로 숫자받음
+취소 누르면 결과x
+반복문으로 1부터 입력숫자까지 실행
+나누기3=0?
+카운터개수로 표시 
+3의 배수를 찾고 입력숫자까지 3배수가 몇개인지 찾음
+
+카운팅 변수 지정해서 3배수 나오면 카운팅+1
+document.write(3의 배수들)
+
+-->

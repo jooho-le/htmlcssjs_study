@@ -1,0 +1,67 @@
+<!--
+
+boby { font-family : 글꼴이름1, 글꼴이름2,, } : 글꼴 지정 , 글꼴이름1이 없으면 글꼴이름2로 적용 , boby에 적용하면 문서 전체에 적용됨
+
+선택자 { font-size : 사이즈 } : 글자 크기 지정 , em/rem/ex/px/pt 사용
+
+선택자 { font-style : 스타일 } : 글자 스타일 지정 , normal/italic 등 사용
+
+선택자 { font-weight : 글자 굵기 } : 글자 굵기 지정 , normal/bold/lighter등 사용 또는 100~900사이 지정 사용
+
+---------------------------------------------------------------------
+
+@font-face {
+    font-famaly : <'글꼴이름'>;
+    src : local('글꼴이름'),
+        url('글꼴파일') format('woff'),
+}                                       : 글꼴을 local()문을 사용해 있는지 확인하고 있다면 src속성에서 사용할 글꼴파일 경로 지정후 불러옴
+                                          글꼴이 없다면 formal('woff')를 통해 글꼴을 내려받음
+
+---------------------------------------------------------------------
+
+선택자 { color : 색상 } : 글자색 지정 , 16진수(#0000ff)/색이름(green)/hsl표기법(0, 100%, 50%) 사용
+
+선택자 { color : rgb(?, ?, ?) } : rgb로 글자색 지정
+
+선택자 { color : rgba(?, ?, ?, ?) } : rgb로 색 지정 후 불투명도 지정
+
+text-align : 속성 : 텍스트 정렬 지정
+    *속성 p214
+
+line-height : 속성 : 줄간격 지정
+
+ex) 선택자 { hight : 100px
+            line-hight : 100px
+            }               : high와 line-hight가 동일하므로 가운데 정렬됨
+
+<선택자 style="text-decoration : ?">?</선택자> : ?에 none(줄표시x)/underline(밑줄)/overline(윗줄)/line-through(취소줄) 넣으면 표시됨
+
+text-shadow : 가로거리 세로거리 번짐정도 색상 : 텍스트에 그림자 효과 적용 , 가로거리/세로거리는 필수 속성(px)
+
+text-transform : capitalize/uppercase/lowercase/full-width : 텍스트를 첫번쨰글자를대문자/모든글자대문자/모든글자소문자/모둔문자 전각문자로 적용
+
+letter-spacing : ?em : 글자와 글자 사이 간격 조절
+word-spacing : ?em : 단어와 단어 사이 간격 조절
+
+---------------------------------------------------------------------
+
+list-style-type : 속성 : 속성 스타일을 적용하여 목록을 만듬
+            * 속성 p222
+        
+list-style-image : url('이미지경로') : 이미지를 적용하여 목록을 만듬
+
+list-style-position : inside/outside : 불릿이나 번호를 기본 위치보다 들여씀/기본값 으로 적용
+
+list-style : 속성1 속성2 속성3 : 위 세개 한꺼번에 표시 가능
+
+---------------------------------------------------------------------
+
+caption-side : top/bottom : 캡션을 표 윗부분(기본값)/아랫부분에 표시
+
+border : ?px 색상 : 표 테두리 선크기와 색상 결정
+
+border-spacing : 수평거리 수직거리 : 셀과 셀 사이 여백 조절 , 두 값이 같다면 1개만 지정해도 됨
+
+border-collapse : collapse/separate : 표와 셀을 하나로 합쳐서/따로(기본값) 표시
+
+-->
